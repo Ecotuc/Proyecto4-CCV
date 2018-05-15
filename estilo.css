@@ -5,7 +5,10 @@
 body{
 	margin: 0;
 	font-family: sans-serif;
-	background: #204862;
+}
+.fondo{
+	background-image: url(backgrnd.jpg);
+	
 }
 
 h2 {

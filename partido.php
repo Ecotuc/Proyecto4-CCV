@@ -28,12 +28,17 @@
 				$query = "SELECT * FROM equipos";
 				$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
-				while($fila = mysqli_fetch_assoc($result)){
-        		    $num = $fila['NumCuenta'];
-				    $nom = $fila['NombreCuenta'];
-            		echo '<option value= "'.$num.'">'.$nom.'</option>';  
-        		}
-        	mysqli_close($link);
+				echo 'Seleccione el primer equipo';
+				while ($row = pg_fetch_assoc($result)) {
+					$equipo1 = $row['equipo'];
+					echo '<option value="'.$equipo1.'">'.$equipo1.'</option>';  
+				}
+
+				echo 'Seleccione el segundo equipo';
+				while ($row = pg_fetch_assoc($result)) {
+					$equipo2 = $row['equipo'];
+					echo '<option value="'.$equipo2.'">'.$equipo2.'</option>';  
+				}
         ?>
 	 		</select>
 	 		<input type="text" name="nombre" placeholder="Nombre del equipo" class="input-48" required>

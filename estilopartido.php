@@ -8,9 +8,6 @@ body{
 	background: #204862;
 }
 
-.fondo{
-	background-image: url(backgrnd.jpg);
-}
 h2 {
 	color: #fff;
 	text-align: center;
@@ -44,6 +41,14 @@ h2 {
 }
 
 input{
+	margin-bottom: 15px;
+	padding: 15px;
+	font-size: 16px;
+	border-radius: 3px;
+	border: 1px solid darkgray;
+}
+
+select{
 	margin-bottom: 15px;
 	padding: 15px;
 	font-size: 16px;
