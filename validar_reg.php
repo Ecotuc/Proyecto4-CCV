@@ -1,47 +1,32 @@
-<?php 
-	$f1=0;
-	$f2=0;
-	$f3=0;
-	$f4=0;
-	if(isset($_POST['submit'])){
-		if(strlen($usuario) > 20){
-			echo '<center> <h4 class=\'error\'> El usuario debe tener como máximo 20 caracteres. </h4></center>';
-			die();
-		}else if(strlen($usuario) < 6){
-			echo '<center> <h4 class=\'error\'> El usuario debe tener como mínimo 6 caracteres. </h4></center>';
-			die();
-		}else{
-			$f1=1;
-		}
-		if(strlen($nombre) > 20){
-			echo '<center> <h4 class=\'error\'> El nombre debe tener como máximo 20 caracteres. </h4></center>';
-			die();
+<!DOCTYPE html>
+<html>
+	<head>
+			<meta charset="utf-8">
+			<title>Registro</title>
+			<link rel="stylesheet" type="text/css" href="e2.css">
+		<link rel="icon" type="imgage/png" href="Russia.png" sizes="32x32">
+	</head>
+	<body class="fondo">
+		<form action="validar_reg.php" method="post" class="form-register">
+			<h2 class="form-titulo">Bienvenido</h2>
+			<div class="contenedor-inputs2">
 
-		}else if(strlen($nombre) < 2){
-			echo '<center> <h4 class=\'error\'> El nombre debe tener como mínimo 6 caracteres. </h4></center>';
-			die();
-		}else{
-			$f2=1;
-		}
-		if(strlen($apellido) > 20){
-			echo '<center> <h4 class=\'error\'> El apellido debe tener como máximo 20 caracteres. </h4></center>';
-			die();
-		}else if(strlen($apellido) < 2){
-			echo '<center> <h4 class=\'error\'> El apellido debe tener como mínimo 6 caracteres. </h4></center>';
-			die();
-		}else{
-			$f3=1;
-		}
-		if(strlen($contra) > 20){
-			echo '<center> <h4 class=\'error\'> La contraseña debe tener como máximo 15 caracteres. </h4></center>';
-			die();
-		}else if(strlen($contra) < 8){
-			echo '<center> <h4 class=\'error\'> La contraseña debe tener como mínimo 8 caracteres. </h4></center>';
-			die();
-		}else{
-			$f4=1;
-		}
+			<?php 
+				$nombre=$_POST["Nombre"];
+				$apellido=$_POST["Apellido"];
+				$contra=$_POST["Contra"];
+				$usuario=$_POST["Usuario"];
+				$dbconn = pg_connect("host=localhost dbname=Proyecto2 user=postgres password=1030")
+				or die('Could not connect: ' . pg_last_error());
+				
+				$query = "INSERT INTO users VALUES ( '$nombre', '$apellido','$contra', 0,'$usuario', 'U')";
+				$result = pg_query($query) or die('Query failed: ' . pg_last_error());
+
+				pg_free_result($result);
+				pg_close($dbconn);
+
+			?>
+			<center><a id="link" href="index.php">Inicia sesión aquí</a></h1></center>
+		</div>
 		
-		
-	}
-?>
+	</body>
