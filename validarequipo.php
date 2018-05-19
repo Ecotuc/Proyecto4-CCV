@@ -9,8 +9,10 @@
 <body>
 	<?php
 		$nombre=$_POST["nombre"];
-		$imagen=$_POST["imagen"];
+		$imagen=file_get_contents($_FILES["imagen"]["tmp_name"]);
 		$grupo=$_POST["grupo"];
+
+		$escaped = pg_escape_bytea($imagen);
 
 		$f1=0;
 		$f2=0;
@@ -30,19 +32,16 @@
     			or die('Could not connect: ' . pg_last_error()); 
 
 
-				$query = "INSERT INTO equipos VALUES ( '$nombre', '$imagen','$grupo', 0, 0, 0)";
+				$query = "INSERT INTO equipos VALUES ( '$nombre', '$escaped','$grupo', 0, 0, 0)";
 
 				$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
-				$query1 = "SELECT bandera FROM equipos WHERE nombre='Rusia'";
-				$result1 = pg_query($query1) or die('Query failed: ' . pg_last_error());
-
-				$row   = pg_fetch_row($result1);
-				$image = pg_unescape_bytea($row[0]);
-
-				header("Content-type: image/jpeg");
-				echo $image;
-
+				if($result){
+					header("Location:bienvenido.php");
+				} else {
+					echo "No se pudo ingresar";
+					header("Location:bienvenido.php");
+				}
 
 				pg_free_result($result);
 

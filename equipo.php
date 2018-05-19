@@ -7,7 +7,7 @@
 	<link rel="icon" type="imgage/png" href="Russia.png" sizes="32x32">
 </head>
 <body>
-	<form action="validarequipo.php" method="post" class="form-register">
+	<form action="validarequipo.php" method="post" class="form-register" enctype= "multipart/form-data">
 
 		<h2 class="form-titulo">Equipo</h2>
 	 	<div class="contenedor-inputs">
