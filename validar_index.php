@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<meta charset="utf-8">
+			<title>Index</title>
+			<link rel="stylesheet" type="text/css" href="e2.css">
+		<link rel="icon" type="imgage/png" href="Russia.png" sizes="32x32">
+	</head>
+
 <?php 
 
 	session_start();
@@ -18,7 +27,7 @@
 			$f2=1;
 		}
 		if(($f1==1)&&($f2==1)){
-			$dbconn = pg_connect("host=localhost dbname=Proyecto2 user=postgres password=1030")
+			$dbconn = pg_connect("host=localhost dbname=ProyectoCC user=postgres password=1998")
 				or die('Could not connect: ' . pg_last_error());
 				
 			$query = "SELECT * FROM users WHERE '$usuario'=usuario AND '$contraseña'=pswrd";
@@ -29,8 +38,13 @@
 			if($rows>0){
 				header("location:bienvenido.php");
 			} else {
-				header("location:index.php");
-				echo "Contraseña o usuario incorrecto";
+				echo "<body class='fondo'>";
+				echo "<h2 class='form-titulo'>Contraseña o usuario incorrecto</h2>";
+    			echo "<script>
+            		setTimeout(function() {
+                    location.href = 'index.php';
+            		}, 2000);
+        			</script>";
 			}
 
 			pg_free_result($result);
@@ -39,3 +53,5 @@
 		}
 	}
 ?>
+
+</html>
