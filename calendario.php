@@ -40,11 +40,28 @@
 			
 			while ($row = pg_fetch_row($resultado)) {
 
+				$query2 = "SELECT * FROM quiniela WHERE '$varsesion'=usuario AND '$row[6]'=idpartido";
+
+				$resultado2 = pg_query($query2) or die('Query failed: ' . pg_last_error());
+
+				$rows = pg_num_rows($result);
+
 				echo "<tr>
 						<th>
 							<br>$row[0]<br>
 							$row[1]<br><br>
 						</th>
+						<th>
+							<br>";
+
+						if($rows>0){
+							echo "&nbsp;&nbsp;$resultado2[2]&nbsp;&nbsp;<br>
+								&nbsp;&nbsp;$resultado2[3]&nbsp;&nbsp;<br><br>";
+						} else {
+							echo "&nbsp;&nbsp;0&nbsp;&nbsp;<br>
+								&nbsp;&nbsp;0&nbsp;&nbsp;<br><br>";
+						}
+						echo "</th>
 						<th>
 							<br>$row[2]<br>
 							$row[3]<br><br>
@@ -52,7 +69,7 @@
 						<th>
 							<br>
 							&nbsp;&nbsp;
-							<a href='quiniela.php'>Mi resultado</a>
+							<a href=quiniela.php?equipo1=$row[0]&equipo2=$row[1]&id=$row[6]&>Editar mi resultado</a>
 							<br><br>
 						</th>
 					</tr>";
