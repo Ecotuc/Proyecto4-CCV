@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	error_reporting(0);
+
+	$varsesion = $_SESSION['usuario'];
+
+	if($varsesion == null || $varsesion == ''){
+		echo 'Debe iniciar sesion para ingresar';
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	error_reporting(0);
+
+	$varsesion = $_SESSION['usuario'];
+
+	if($varsesion == null || $varsesion == ''){
+		echo 'Debe iniciar sesion para ingresar';
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,7 +62,7 @@
 			$dbconn = pg_connect("host=localhost dbname=ProyectoCC user=postgres password=1998")
     			or die('Could not connect: ' . pg_last_error()); 
 
-			$query1 = "SELECT * FROM partidos WHERE (((('$equipo1'=equipo1) AND ('$equipo2'=equipo2)) OR (('$equipo1'=equipo2) AND ('$equipo2'=equipo1))) AND fase=1)";
+			$query1 = "SELECT * FROM partidos WHERE (((('$equipo1'=equipo1) AND ('$equipo2'=equipo2)) OR (('$equipo1'=equipo2) AND ('$equipo2'=equipo1))) AND fase='Grupos')";
 
 			$result1 = pg_query($query1) or die('Query failed: ' . pg_last_error());
 
@@ -95,7 +106,7 @@
 
 			if($f1=1 && $f2=1 && $f3=1 && $f4=1 && $f5=1 && $f6=1 && $f7=1){
 
-				$query = "INSERT INTO partidos(equipo1, equipo2, fecha, hora, fase, gole1, gole2) VALUES ( '$equipo1', '$equipo2','$fecha','$hora', '1', 0, 0)";
+				$query = "INSERT INTO partidos(equipo1, equipo2, fecha, hora, fase, gole1, gole2) VALUES ( '$equipo1', '$equipo2','$fecha','$hora', 'Grupos', 0, 0)";
 
 				$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
