@@ -45,11 +45,15 @@
 				$resultado2 = pg_query($query2) or die('Query failed: ' . pg_last_error());
 
 				$rows = pg_num_rows($result);
+				$equipo1=$row[0];
+				$equipo2=$row[1];
+				$id=$row[6];
+
 
 				echo "<tr>
 						<th>
-							<br>$row[0]<br>
-							$row[1]<br><br>
+							<br>$equipo1<br>
+							$equipo2<br><br>
 						</th>
 						<th>
 							<br>";
@@ -69,7 +73,7 @@
 						<th>
 							<br>
 							&nbsp;&nbsp;
-							<a href=quiniela.php?equipo1=$row[0]&equipo2=$row[1]&id=$row[6]&>Editar mi resultado</a>
+							<a href=quiniela.php?equipo1=$equipo1,equipo2=$equipo2&&id=$id&&usuario=$varsesion>Editar mi pronóstico</a>
 							<br><br>
 						</th>
 					</tr>";
